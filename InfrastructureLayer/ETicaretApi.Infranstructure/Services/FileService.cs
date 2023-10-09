@@ -24,7 +24,7 @@ namespace ETicaretApi.Infranstructure.Services
             
             try
             {
-                using FileStream fileStream = new(path, FileMode.Create, FileAccess.Write, FileShare.None, 1024 * 1024, useAsync: false);
+                await using FileStream fileStream = new(path, FileMode.Create, FileAccess.Write, FileShare.None, 1024 * 1024, useAsync: false);
                 await file.CopyToAsync(fileStream);
                 await fileStream.FlushAsync();
                 return true;
@@ -127,6 +127,11 @@ namespace ETicaretApi.Infranstructure.Services
 
             return null;
 
+        }
+
+        public Task<string> FileRenameAsync(string path)
+        {
+            throw new NotImplementedException();
         }
     }
 }

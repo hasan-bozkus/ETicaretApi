@@ -1,5 +1,4 @@
-﻿
-using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Http;
 
 namespace ETicaretApi.Application.Services
 {
@@ -8,5 +7,7 @@ namespace ETicaretApi.Application.Services
         Task<List<(string fileName, string path)>> UploadAsync(string path, IFormFileCollection files);
 
         Task<bool> CopyFileAsync(string path, IFormFile file);
+
+        Task<string> FileRenameAsync(string path);
     }
 }
