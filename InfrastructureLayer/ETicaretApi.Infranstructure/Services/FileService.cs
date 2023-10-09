@@ -38,7 +38,7 @@ namespace ETicaretApi.Infranstructure.Services
 
         async Task<string> FileRenameAsync(string path, string fileName, bool first = true)
         {
-           string newFileName = await Task.Run(async () =>
+           string newFileName = await Task.Run<string>(async () =>
              {
                  string extension = Path.GetExtension(fileName);
                  string newFileName = fileName;
@@ -77,7 +77,7 @@ namespace ETicaretApi.Infranstructure.Services
                          {
                              _fileNo++;
                              newFileName = newFileName.Remove(indexNo1 + 1, indexNo2 - indexNo1 - 1)
-                                                 .Insert(indexNo1 + 1, _fileNo.ToString());
+                                                      .Insert(indexNo1 + 1, _fileNo.ToString());
                          }
                          else
                          {
@@ -86,7 +86,6 @@ namespace ETicaretApi.Infranstructure.Services
 
                      }
                  }
-
 
                  if (File.Exists($"{path}\\{newFileName}"))
                      return await FileRenameAsync(path, newFileName, false);
@@ -127,11 +126,6 @@ namespace ETicaretApi.Infranstructure.Services
 
             return null;
 
-        }
-
-        public Task<string> FileRenameAsync(string path)
-        {
-            throw new NotImplementedException();
         }
     }
 }
