@@ -12,7 +12,6 @@ namespace ETicaretApi.Application.Abstractions.Storage
     {
         Task<List<(string fileName, string pathOrContainerName)>> UploadAsync(string pathOrContainerName, IFormFileCollection files);
         Task DeleteAsync(string pathOrContainerName, string fileName);
-
         List<string> GetFiles(string pathOrContainerName);
         bool HashFile(string pathOrContainerName, string fileName);
     }

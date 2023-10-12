@@ -7,16 +7,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Azure.Storage.Blobs" Version="12.18.0" />
     <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL.Design" Version="1.1.0" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\..\CoreLayer\ETicaretApi.Application\ETicaretApi.Application.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Services\Storage\Azure\" />
-    <Folder Include="Services\Storage\AWS\" />
   </ItemGroup>
 
 </Project>
