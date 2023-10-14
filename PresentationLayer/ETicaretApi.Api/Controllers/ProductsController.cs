@@ -1,8 +1,10 @@
 ﻿using ETicaretApi.Application.Abstractions.Storage;
+using ETicaretApi.Application.Features.Queries.GetAllProduct;
 using ETicaretApi.Application.Repostories;
 using ETicaretApi.Application.RequestParameters;
 using ETicaretApi.Application.ViewModels.Products;
 using ETicaretApi.Domain.Entities;
+using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -26,10 +28,13 @@ namespace ETicaretApi.Api.Controllers
         private readonly IStorageService _storageService;
         readonly IConfiguration _configuration;
 
+
+        readonly IMediator _mediator;
+
         public ProductsController(IProductWriteRepository productWriteRepository, IProductReadRepository productReadReppository,
             IWebHostEnvironment webHostEnvironment, IFileWriteRepository fileWriteRepository, IFileReadRepository fileReadRepository,
             IProductImageFileWriteRepository productImageFileWriteRepository, IProductImageFileReadRepository productImageFileReadRepository, IInvoiceFileReadRepository invoiceFileReadRepository, IInvoiceFileWriteRepository invoiceFileWriteRepository,
-            IStorageService storageService, IConfiguration configuration)
+            IStorageService storageService, IConfiguration configuration, IMediator mediator)
         {
             _productWriteRepository = productWriteRepository;
             _productReadRepository = productReadReppository;
@@ -42,27 +47,14 @@ namespace ETicaretApi.Api.Controllers
             _invoiceFileWriteRepository = invoiceFileWriteRepository;
             _storageService = storageService;
             _configuration = configuration;
+            _mediator = mediator;
         }
 
         [HttpGet]
-        public async Task<IActionResult> Get([FromQuery]Pagination pagination)
+        public async Task<IActionResult> Get([FromQuery] GetAllProductQueryRequest getAllProductQueryRequest)
         {
-            //await Task.Delay(5000);
-            var totalCount = _productReadRepository.GetAll(false).Count();
-           var products = _productReadRepository.GetAll(false).Skip(pagination.Page * pagination.Size).Take(pagination.Size).Select(p => new
-            {
-                p.Id,
-                p.Name,
-                p.Stock,
-                p.Price,
-                p.CreateDate,
-                p.UpdateDate
-            }).ToList();
-
-            return Ok(new
-            {
-                totalCount, products
-            });
+            GetAllProductQueryResponse response = await _mediator.Send(getAllProductQueryRequest);
+            return Ok(response);
         }
 
         [HttpGet("{Id}")]
