@@ -1,4 +1,5 @@
 ﻿using ETicaretApi.Application.Abstractions.Storage;
+using ETicaretApi.Application.Features.Commands.CreateProduct;
 using ETicaretApi.Application.Features.Queries.GetAllProduct;
 using ETicaretApi.Application.Repostories;
 using ETicaretApi.Application.RequestParameters;
@@ -64,15 +65,9 @@ namespace ETicaretApi.Api.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Post(VM_Create_Product model)
+        public async Task<IActionResult> Post(CreateProductCommandRequest createProductCommandRequest)
         {
-            await _productWriteRepository.AddAsync(new()
-            {
-                Name = model.Name,
-                Price = model.Price,
-                Stock = model.Stock
-            });
-            await _productWriteRepository.SaveAsync();
+            CreateProductCommandResponse response = await _mediator.Send(createProductCommandRequest);
             return StatusCode((int)HttpStatusCode.Created);
         }
 

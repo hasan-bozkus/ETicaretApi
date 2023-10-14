@@ -8,7 +8,7 @@ namespace ETicaretApi.Application.Features.Queries.GetAllProduct
 {
     public class GetAllProductQueryResponse
     {
-        public int TotalProductCount { get; set; }
+        public int TotalCount { get; set; }
         public object Products { get; set; }
     }
 }

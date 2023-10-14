@@ -22,10 +22,9 @@ namespace ETicaretApi.Application.Features.Queries.GetAllProduct
 
         public async Task<GetAllProductQueryResponse> Handle(GetAllProductQueryRequest request, CancellationToken cancellationToken)
         {
-            var totalProductCount = _productReadRepository.GetAll(false).Count();
+            var totalCount = _productReadRepository.GetAll(false).Count();
 
             var products = _productReadRepository.GetAll(false).Skip(request.Page * request.Size).Take(request.Size)
-                .Include(p => p.ProductImageFiles)
                 .Select(p => new
                 {
                     p.Id,
@@ -40,7 +39,7 @@ namespace ETicaretApi.Application.Features.Queries.GetAllProduct
             return new()
             {
                 Products = products,
-                TotalProductCount = totalProductCount
+                TotalCount = totalCount
             };
         }
     }
