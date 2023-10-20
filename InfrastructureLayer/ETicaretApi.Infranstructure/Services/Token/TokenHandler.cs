@@ -20,7 +20,7 @@ namespace ETicaretApi.Infranstructure.Services.Token
             _configuration = configuration;
         }
 
-        public D::Token CreatAccessToken(int munite)
+        public D::Token CreateAccessToken(int munite)
         {
             D::Token token = new();
             //securitykey'in simetriğini alıyoruz.
