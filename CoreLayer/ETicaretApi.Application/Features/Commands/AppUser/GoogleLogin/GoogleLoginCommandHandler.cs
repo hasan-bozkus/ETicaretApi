@@ -1,5 +1,5 @@
-﻿using ETicaretApi.Application.Abstractions.DTOs;
-using ETicaretApi.Application.Abstractions.Token;
+﻿using ETicaretApi.Application.Abstractions.Token;
+using ETicaretApi.Application.DTOs;
 using ETicaretApi.Domain.Entities.Identity;
 using Google.Apis.Auth;
 using MediatR;

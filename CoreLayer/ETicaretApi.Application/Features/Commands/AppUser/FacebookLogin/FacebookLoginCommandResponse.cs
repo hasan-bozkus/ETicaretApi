@@ -5,9 +5,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ETicaretApi.Application.Features.Commands.AppUser.GoogleLogin
+namespace ETicaretApi.Application.Features.Commands.AppUser.FacebookLogin
 {
-    public class GoogleLoginCommandResponse
+    public class FacebookLoginCommandResponse
     {
         public Token Token { get; set; }
     }

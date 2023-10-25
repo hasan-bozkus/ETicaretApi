@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using ETicaretApi.Application.Exceptions;
 using ETicaretApi.Application.Abstractions.Token;
-using ETicaretApi.Application.Abstractions.DTOs;
+using ETicaretApi.Application.DTOs;
 
 namespace ETicaretApi.Application.Features.Commands.AppUser.LoginUser
 {

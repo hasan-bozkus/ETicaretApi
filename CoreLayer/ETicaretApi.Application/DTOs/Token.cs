@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ETicaretApi.Application.Abstractions.DTOs
+namespace ETicaretApi.Application.DTOs
 {
     public class Token
     {

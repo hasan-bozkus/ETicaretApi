@@ -1,5 +1,5 @@
 ﻿using ETicaretApi.Application.Abstractions.Token;
-using D = ETicaretApi.Application.Abstractions.DTOs;
+using D = ETicaretApi.Application.DTOs;
 using System;
 using System.Collections.Generic;
 using System.Linq;
