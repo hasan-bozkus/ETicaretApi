@@ -9,7 +9,7 @@ namespace ETicaretApi.Application.Abstractions.Token
 {
     public interface ITokenHandler
     {
-        T::Token CreateAccessToken(int munite);
+        T::Token CreateAccessToken(int second);
 
 
     }

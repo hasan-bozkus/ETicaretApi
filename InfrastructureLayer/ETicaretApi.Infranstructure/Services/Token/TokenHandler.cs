@@ -20,7 +20,7 @@ namespace ETicaretApi.Infranstructure.Services.Token
             _configuration = configuration;
         }
 
-        public D::Token CreateAccessToken(int munite)
+        public D::Token CreateAccessToken(int second)
         {
             D::Token token = new();
             //securitykey'in simetriğini alıyoruz.
@@ -30,7 +30,7 @@ namespace ETicaretApi.Infranstructure.Services.Token
             SigningCredentials signingCredentials = new(securityKey, SecurityAlgorithms.HmacSha256);
 
             //oluşturulacak token ayarlarını veriyoruz.
-            token.Expiration = DateTime.UtcNow.AddMinutes(munite);
+            token.Expiration = DateTime.UtcNow.AddMinutes(second);
 
             JwtSecurityToken securityToken = new(
                 audience: _configuration["Token:Audience"],
