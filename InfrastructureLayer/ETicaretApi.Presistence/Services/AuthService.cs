@@ -26,15 +26,17 @@ namespace ETicaretApi.Presistence.Services
         readonly UserManager<AppUser> _userManager;
         readonly ITokenHandler _tokenHandler;
         readonly SignInManager<AppUser> _signInManager;
+        readonly IUserService _userService;
 
         public AuthService(IHttpClientFactory httpClientFactory, IConfiguration configuration,
-            UserManager<AppUser> userManager, ITokenHandler tokenHandler, SignInManager<AppUser> signInManager)
+            UserManager<AppUser> userManager, ITokenHandler tokenHandler, SignInManager<AppUser> signInManager, IUserService userService)
         {
             _httpClient = httpClientFactory.CreateClient();
             _configuration = configuration;
             _userManager = userManager;
             _tokenHandler = tokenHandler;
             _signInManager = signInManager;
+            _userService = userService;
         }
 
         async Task<Token> CreateUserExternalAsync(AppUser user, string email, string name, UserLoginInfo info, int accessTokenLifeTime)
@@ -62,6 +64,7 @@ namespace ETicaretApi.Presistence.Services
                 await _userManager.AddLoginAsync(user, info);   //AspNetUsersLogins
 
                 Token token = _tokenHandler.CreateAccessToken(accessTokenLifeTime);
+                await _userService.UpdateRefreshToken(token.refreshToken, user, token.Expiration, 15);
                 return token;
             }
             throw new Exception("Invalid external authentication...");
@@ -117,6 +120,7 @@ namespace ETicaretApi.Presistence.Services
             if (result.Succeeded) //Authentication başarılı
             {
                 Token token = _tokenHandler.CreateAccessToken(accessTokenLifeTime);
+                await _userService.UpdateRefreshToken(token.refreshToken, user, token.Expiration, 15);
                 return token;
             }
 

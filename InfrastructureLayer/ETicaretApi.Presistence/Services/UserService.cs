@@ -1,5 +1,6 @@
 ﻿using ETicaretApi.Application.Abstractions.Services;
 using ETicaretApi.Application.DTOs.User;
+using ETicaretApi.Application.Exceptions;
 using ETicaretApi.Domain.Entities.Identity;
 using MediatR;
 using Microsoft.AspNetCore.Identity;
@@ -22,6 +23,7 @@ namespace ETicaretApi.Presistence.Services
 
         public async Task<CreateUserResponse> CreateAsync(CreateUser model)
         {
+
             IdentityResult result = await _userManager.CreateAsync(new()
             {
                 Id = Guid.NewGuid().ToString(),
@@ -39,6 +41,21 @@ namespace ETicaretApi.Presistence.Services
                     response.Message += $"{error.Code} - {error.Description}\n";
 
             return response;
+        }
+
+        public async Task UpdateRefreshToken(string refreshToken, AppUser user, DateTime accessTokenDate, int addOnAccessTokenDate)
+        {
+            if(user != null)
+            {
+                user.RefreshToken = refreshToken;
+                user.RefreshTokenEndDate = accessTokenDate.AddSeconds(addOnAccessTokenDate);
+                await _userManager.UpdateAsync(user);
+            }
+            else
+            {
+                throw new NotFoundUserException();
+            }
+           
         }
     }
 }
