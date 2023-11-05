@@ -8,6 +8,7 @@ using ETicaretApi.Domain.Entities.Identity;
 using Google.Apis.Auth;
 using MediatR;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;
@@ -126,6 +127,19 @@ namespace ETicaretApi.Presistence.Services
 
             throw new AuthenticationErrorException();
 
+        }
+
+        public async Task<Token> RefreshTokenLoginAsync(string refreshToken)
+        {
+            AppUser? user = await _userManager.Users.FirstOrDefaultAsync(u => u.RefreshToken == refreshToken);
+            if(user != null && user?.RefreshTokenEndDate > DateTime.UtcNow)
+            {
+                Token token = _tokenHandler.CreateAccessToken(15);
+               await _userService.UpdateRefreshToken(token.refreshToken, user, token.Expiration, 15);
+                return token;
+            }
+            else
+               throw new NotFoundUserException();
         }
     }
 }
