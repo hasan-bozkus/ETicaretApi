@@ -9,6 +9,8 @@ using Microsoft.IdentityModel.Tokens;
 using Microsoft.Extensions.Configuration;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Cryptography;
+using System.Security.Claims;
+using ETicaretApi.Domain.Entities.Identity;
 
 namespace ETicaretApi.Infranstructure.Services.Token
 {
@@ -21,7 +23,7 @@ namespace ETicaretApi.Infranstructure.Services.Token
             _configuration = configuration;
         }
 
-        public D::Token CreateAccessToken(int second)
+        public D::Token CreateAccessToken(int second, AppUser appUser)
         {
             D::Token token = new();
             //securitykey'in simetriğini alıyoruz.
@@ -38,7 +40,8 @@ namespace ETicaretApi.Infranstructure.Services.Token
                 issuer: _configuration["Token:Issuer"],
                 expires: token.Expiration,
                 notBefore: DateTime.UtcNow,
-                signingCredentials: signingCredentials
+                signingCredentials: signingCredentials,
+                claims: new List<Claim> { new(ClaimTypes.Name, appUser.UserName)}
                 );
 
             //Token oluşturucu sınıfından bir örnek alalım.
