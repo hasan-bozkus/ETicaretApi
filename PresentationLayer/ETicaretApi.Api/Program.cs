@@ -1,4 +1,5 @@
 using ETicaretApi.Api.Configurations.ColumnWriter;
+using ETicaretApi.Api.Extensions;
 using ETicaretApi.Application;
 using ETicaretApi.Application.Validators.Product;
 using ETicaretApi.Infranstructure;
@@ -97,6 +98,8 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
+app.ConfigureExceptionHandler<Program>(app.Services.GetRequiredService<ILogger<Program>>());
 
 app.UseStaticFiles();
 
