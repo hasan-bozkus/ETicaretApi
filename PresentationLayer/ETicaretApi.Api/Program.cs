@@ -7,6 +7,8 @@ using ETicaretApi.Infranstructure.Enums;
 using ETicaretApi.Infranstructure.Filters;
 using ETicaretApi.Infranstructure.Services.Storage.Azure;
 using ETicaretApi.Presistence;
+using ETicaretApi.SignalR;
+using ETicaretApi.SignalR.Hubs;
 using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.HttpLogging;
@@ -23,6 +25,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddPersistenceServices();
 builder.Services.AddInfrastructureServices();
 builder.Services.AddApplicationServices();
+builder.Services.AddSignalRServices();
 
 //builder.Services.AddStorage(StorageType.Local);
 builder.Services.AddStorage<AzureStorage>();
@@ -122,5 +125,6 @@ app.Use(async (context, next) =>
 });
 
 app.MapControllers();
+app.MapHubs();
 
 app.Run();

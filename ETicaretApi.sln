@@ -13,11 +13,13 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "InfranstructureLayer", "Inf
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "PresentationLayer", "PresentationLayer", "{F9D12A4E-66D7-4F0C-8D1C-0BE0E7AFDBE1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ETicaretApi.Infranstructure", "InfrastructureLayer\ETicaretApi.Infranstructure\ETicaretApi.Infranstructure.csproj", "{EBCC8D87-89E8-4876-B76A-77350DC41ECE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ETicaretApi.Infranstructure", "InfrastructureLayer\ETicaretApi.Infranstructure\ETicaretApi.Infranstructure.csproj", "{EBCC8D87-89E8-4876-B76A-77350DC41ECE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ETicaretApi.Presistence", "InfrastructureLayer\ETicaretApi.Presistence\ETicaretApi.Presistence.csproj", "{67CD4AB7-131E-4AB2-9B4A-48AE11637345}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ETicaretApi.Presistence", "InfrastructureLayer\ETicaretApi.Presistence\ETicaretApi.Presistence.csproj", "{67CD4AB7-131E-4AB2-9B4A-48AE11637345}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ETicaretApi.Api", "PresentationLayer\ETicaretApi.Api\ETicaretApi.Api.csproj", "{8BEE50E0-1F47-4780-93C5-1344552D5548}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ETicaretApi.Api", "PresentationLayer\ETicaretApi.Api\ETicaretApi.Api.csproj", "{8BEE50E0-1F47-4780-93C5-1344552D5548}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ETicaretApi.SignalR", "InfrastructureLayer\ETicaretApi.SignalR\ETicaretApi.SignalR.csproj", "{8F72D106-D91F-4969-A243-3B3422E5A549}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -45,6 +47,10 @@ Global
 		{8BEE50E0-1F47-4780-93C5-1344552D5548}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8BEE50E0-1F47-4780-93C5-1344552D5548}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8BEE50E0-1F47-4780-93C5-1344552D5548}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8F72D106-D91F-4969-A243-3B3422E5A549}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8F72D106-D91F-4969-A243-3B3422E5A549}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8F72D106-D91F-4969-A243-3B3422E5A549}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8F72D106-D91F-4969-A243-3B3422E5A549}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -55,6 +61,7 @@ Global
 		{EBCC8D87-89E8-4876-B76A-77350DC41ECE} = {D11E4F2D-C063-42FA-969F-5B6C58B83A1C}
 		{67CD4AB7-131E-4AB2-9B4A-48AE11637345} = {D11E4F2D-C063-42FA-969F-5B6C58B83A1C}
 		{8BEE50E0-1F47-4780-93C5-1344552D5548} = {F9D12A4E-66D7-4F0C-8D1C-0BE0E7AFDBE1}
+		{8F72D106-D91F-4969-A243-3B3422E5A549} = {D11E4F2D-C063-42FA-969F-5B6C58B83A1C}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {15CA3392-6249-4F8E-92AA-D5501C029E9F}

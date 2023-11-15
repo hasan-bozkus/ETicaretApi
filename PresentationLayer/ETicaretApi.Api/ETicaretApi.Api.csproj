@@ -32,6 +32,7 @@
     <ProjectReference Include="..\..\CoreLayer\ETicaretApi.Application\ETicaretApi.Application.csproj" />
     <ProjectReference Include="..\..\InfrastructureLayer\ETicaretApi.Infranstructure\ETicaretApi.Infranstructure.csproj" />
     <ProjectReference Include="..\..\InfrastructureLayer\ETicaretApi.Presistence\ETicaretApi.Presistence.csproj" />
+    <ProjectReference Include="..\..\InfrastructureLayer\ETicaretApi.SignalR\ETicaretApi.SignalR.csproj" />
   </ItemGroup>
 
   <ItemGroup>
