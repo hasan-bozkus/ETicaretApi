@@ -32,7 +32,6 @@ namespace ETicaretApi.Api.Controllers
         }
 
         [HttpGet("{Id}")]
-        [Authorize(AuthenticationSchemes = "Admin")]
         public async Task<IActionResult> Get([FromRoute] GetByIdProductQueryRequest getByIdProductQueryRequest)
         {
             GetByIdProductQueryResponse response = await _mediator.Send(getByIdProductQueryRequest);
