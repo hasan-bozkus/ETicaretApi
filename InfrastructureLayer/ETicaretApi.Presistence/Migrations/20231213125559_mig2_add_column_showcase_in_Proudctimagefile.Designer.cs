@@ -12,8 +12,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace ETicaretApi.Presistence.Migrations
 {
     [DbContext(typeof(ETicaretApiDbContext))]
-    [Migration("20231205050522_mig1_add_all_table")]
-    partial class mig1_add_all_table
+    [Migration("20231213125559_mig2_add_column_showcase_in_Proudctimagefile")]
+    partial class mig2_add_column_showcase_in_Proudctimagefile
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -395,6 +395,9 @@ namespace ETicaretApi.Presistence.Migrations
             modelBuilder.Entity("ETicaretApi.Domain.Entities.ProductImageFile", b =>
                 {
                     b.HasBaseType("ETicaretApi.Domain.Entities.File");
+
+                    b.Property<bool>("Showcase")
+                        .HasColumnType("boolean");
 
                     b.HasDiscriminator().HasValue("ProductImageFile");
                 });

@@ -3,6 +3,7 @@ using System;
 using ETicaretApi.Presistence.Contexts;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -11,9 +12,10 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace ETicaretApi.Presistence.Migrations
 {
     [DbContext(typeof(ETicaretApiDbContext))]
-    partial class ETicaretApiDbContextModelSnapshot : ModelSnapshot
+    [Migration("20231213124233_mig1_add_all_table")]
+    partial class mig1_add_all_table
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -393,9 +395,6 @@ namespace ETicaretApi.Presistence.Migrations
             modelBuilder.Entity("ETicaretApi.Domain.Entities.ProductImageFile", b =>
                 {
                     b.HasBaseType("ETicaretApi.Domain.Entities.File");
-
-                    b.Property<bool>("Showcase")
-                        .HasColumnType("boolean");
 
                     b.HasDiscriminator().HasValue("ProductImageFile");
                 });
