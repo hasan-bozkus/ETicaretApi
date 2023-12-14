@@ -29,6 +29,7 @@ namespace ETicaretApi.Application.Features.Queries.Product.GetAllProduct
             var totalProductCount = _productReadRepository.GetAll(false).Count();
 
             var products = _productReadRepository.GetAll(false).Skip(request.Page * request.Size).Take(request.Size)
+                .Include(p => p.ProductImageFiles)
                 .Select(p => new
                 {
                     p.Id,
