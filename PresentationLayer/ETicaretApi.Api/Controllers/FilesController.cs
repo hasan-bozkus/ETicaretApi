@@ -14,13 +14,13 @@ namespace ETicaretApi.Api.Controllers
             _configuration = configuration;
         }
 
-        [HttpGet]
+        [HttpGet("[action]")]
         public IActionResult GetBaseStorageUrl()
         {
 
             return Ok(new
             {
-                url = _configuration["BaseStorageUrl"]
+                Url = _configuration["BaseStorageUrl"]
             });
         }
     }
