@@ -22,6 +22,7 @@ using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
 
+builder.Services.AddHttpContextAccessor(); //Client'tan gelen istek neticesinde oluþturulan HttpContext nesnesine katmanlardaki class'lar üzerinden(businnes logic) eriþebilmemizi saðlayan bir servistir. 
 builder.Services.AddPersistenceServices();
 builder.Services.AddInfrastructureServices();
 builder.Services.AddApplicationServices();

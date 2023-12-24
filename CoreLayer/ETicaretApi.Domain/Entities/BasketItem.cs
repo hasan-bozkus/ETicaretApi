@@ -9,6 +9,7 @@ namespace ETicaretApi.Domain.Entities
 {
 	public class BasketItem : BaseEntity
 	{
+		//burası BasketId olması gerekirken BastetId olmuş.
 		public Guid BastetId { get; set; }
 		public Guid ProductId { get; set; }
 

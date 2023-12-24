@@ -246,7 +246,6 @@ namespace ETicaretApi.Presistence.Migrations
             modelBuilder.Entity("ETicaretApi.Domain.Entities.Order", b =>
                 {
                     b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
                         .HasColumnType("uuid");
 
                     b.Property<string>("Address")
@@ -282,9 +281,6 @@ namespace ETicaretApi.Presistence.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uuid");
 
-                    b.Property<Guid?>("BasketId")
-                        .HasColumnType("uuid");
-
                     b.Property<DateTime>("CreateDate")
                         .HasColumnType("timestamp with time zone");
 
@@ -305,8 +301,6 @@ namespace ETicaretApi.Presistence.Migrations
                         .HasColumnType("timestamp with time zone");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("BasketId");
 
                     b.ToTable("Products");
                 });
@@ -505,14 +499,15 @@ namespace ETicaretApi.Presistence.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Customer");
-                });
+                    b.HasOne("ETicaretApi.Domain.Entities.Basket", "Basket")
+                        .WithOne("Order")
+                        .HasForeignKey("ETicaretApi.Domain.Entities.Order", "Id")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
-            modelBuilder.Entity("ETicaretApi.Domain.Entities.Product", b =>
-                {
-                    b.HasOne("ETicaretApi.Domain.Entities.Basket", null)
-                        .WithMany("Products")
-                        .HasForeignKey("BasketId");
+                    b.Navigation("Basket");
+
+                    b.Navigation("Customer");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -600,7 +595,8 @@ namespace ETicaretApi.Presistence.Migrations
                 {
                     b.Navigation("BasketItems");
 
-                    b.Navigation("Products");
+                    b.Navigation("Order")
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("ETicaretApi.Domain.Entities.Customer", b =>

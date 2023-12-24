@@ -26,15 +26,27 @@ namespace ETicaretApi.Presistence.Contexts
         public DbSet<Basket> Baskets { get; set; }
         public DbSet<BasketItem> BasketItems { get; set; }
 
+        protected override void OnModelCreating(ModelBuilder builder)
+        {
+            builder.Entity<Order>()
+                .HasKey(b => b.Id);
+            builder.Entity<Basket>()
+                .HasOne(b => b.Order)
+                .WithOne(o => o.Basket)
+                .HasForeignKey<Order>(b=> b.Id);
+
+            base.OnModelCreating(builder);
+        }
+
         public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
         {
             //ChangeTracker : entity'ler üzerinden yapılan değişikliklerin ya da yeni eklenen verinin yakalanmasını sağlayan propertyler'dir. Update operasyonlarında Track edilen verileri yakalayıp elde etmelerini sağlar.
 
             var datas = ChangeTracker
                 .Entries<BaseEntity>();
-            foreach(var data in datas)
+            foreach (var data in datas)
             {
-                _ = data.State switch            
+                _ = data.State switch
                 {
                     EntityState.Added => data.Entity.CreateDate = DateTime.UtcNow,
                     EntityState.Modified => data.Entity.UpdateDate = DateTime.UtcNow,
