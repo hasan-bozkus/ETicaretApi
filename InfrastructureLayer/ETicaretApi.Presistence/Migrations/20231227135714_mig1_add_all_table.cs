@@ -6,7 +6,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace ETicaretApi.Presistence.Migrations
 {
-    public partial class add_all_table_and_create_database : Migration
+    public partial class mig1_add_all_table : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

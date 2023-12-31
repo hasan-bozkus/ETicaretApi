@@ -12,8 +12,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace ETicaretApi.Presistence.Migrations
 {
     [DbContext(typeof(ETicaretApiDbContext))]
-    [Migration("20231224171055_add_all_table_and_create_database")]
-    partial class add_all_table_and_create_database
+    [Migration("20231227135714_mig1_add_all_table")]
+    partial class mig1_add_all_table
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
