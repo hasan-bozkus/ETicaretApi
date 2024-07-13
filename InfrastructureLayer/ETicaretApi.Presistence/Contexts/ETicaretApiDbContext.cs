@@ -33,7 +33,8 @@ namespace ETicaretApi.Presistence.Contexts
             builder.Entity<Basket>()
                 .HasOne(b => b.Order)
                 .WithOne(o => o.Basket)
-                .HasForeignKey<Order>(b=> b.Id);
+                .HasForeignKey<Order>(b => b.Id);
+
 
             base.OnModelCreating(builder);
         }

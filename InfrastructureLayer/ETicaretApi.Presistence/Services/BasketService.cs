@@ -43,8 +43,9 @@ namespace ETicaretApi.Presistence.Services
                 AppUser? user = await _userManager.Users.Include(u => u.Baskets)
                      .FirstOrDefaultAsync(u => u.UserName == userName);
 
-                var _basket = from basket in user.Baskets
-                              join order in _orderReadRepository.Table on basket.Id equals order.Id into BasketOrders
+                var _basket = from basket in user?.Baskets
+                              join order in _orderReadRepository.Table 
+                              on basket.Id equals order.Id into BasketOrders
                               from order in BasketOrders.DefaultIfEmpty()
                               select new
                               {
@@ -61,7 +62,7 @@ namespace ETicaretApi.Presistence.Services
                 else
                 {
                     targetBasket = new();
-                    user.Baskets.Add(targetBasket);
+                    user?.Baskets.Add(targetBasket);
                 }
 
                await _basketWriteRepository.SaveAsync();
@@ -76,7 +77,7 @@ namespace ETicaretApi.Presistence.Services
             Basket? basket = await ContextUser();
             if(basket != null)
             {
-                BasketItem _basketItem = await _basketItemReadRepository.GetSingleAsync(bi => bi.BastetId == basket.Id && bi.ProductId == Guid.Parse(basketItem.ProudcId));
+                BasketItem _basketItem = await _basketItemReadRepository.GetSingleAsync(bi => bi.BasketId == basket.Id && bi.ProductId == Guid.Parse(basketItem.ProudctId));
                 if(_basketItem != null)
                 {
                     _basketItem.Quantity++;
@@ -85,8 +86,8 @@ namespace ETicaretApi.Presistence.Services
                 {
                     await _basketItemWriteRepository.AddAsync(new()
                     {
-                        BastetId = basket.Id,
-                        ProductId = Guid.Parse(basketItem.ProudcId),
+                        BasketId = basket.Id,
+                        ProductId = Guid.Parse(basketItem.ProudctId),
                         Quantity = basketItem.Quantity
                     });
 
